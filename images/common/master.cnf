@@ -1,0 +1,5 @@
+# Simple configuration for a database running as a master in a
+# replicated setup.
+[mysqld]
+log-bin=mysql-bin
+server-id=1

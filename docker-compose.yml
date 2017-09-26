@@ -1,0 +1,29 @@
+version: '3'
+services:
+  common:
+    build: ./images/common
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=test
+    ports:
+      - 3306:3306
+  shard1:
+    build: ./images/shard
+    depends_on:
+      - common
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=test
+      - MYSQL_SERVER_ID=2
+    ports:
+      - 3307:3306
+  shard2:
+    build: ./images/shard
+    depends_on:
+      - common
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=test
+      - MYSQL_SERVER_ID=3
+    ports:
+      - 3308:3306
